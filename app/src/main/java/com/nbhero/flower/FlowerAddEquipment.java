@@ -144,11 +144,11 @@ public class FlowerAddEquipment extends ZlzRootActivity implements View.OnClickL
     }
 
     private  void aboutWifi(){
-
         wi = new ZaboutWIFI(wifiManager,connectManager);
         bWifiNow = wi.wifiNow();
         wifiConfigList = wi.getConfiguration();
         List<BWifi> temp = wi.nearWifi();
+        bWifis.clear();
         for ( int i = 0 ;i<temp.size();i++){
 
             String ssid = temp.get(i).getSSID();
@@ -161,11 +161,11 @@ public class FlowerAddEquipment extends ZlzRootActivity implements View.OnClickL
             }
 
             bWifis.add(temp.get(i));
-
         }
 
+       Log.e("zlz",temp.size()+"temp");
 
-
+        Log.e("zlz",bWifis.size()+"bWifis");
     }
 
     @Override

@@ -66,7 +66,7 @@ public class FlowerAddEquipment extends ZlzRootActivity implements View.OnClickL
 
     //广播
     NetworkConnectChangedReceiver networkConnectChangedReceiver;
-
+    IntentFilter filter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +87,7 @@ public class FlowerAddEquipment extends ZlzRootActivity implements View.OnClickL
         netInfo = connectManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         dhcpInfo = wifiManager.getDhcpInfo();
         wifiInfo = wifiManager.getConnectionInfo();
-        IntentFilter filter = new IntentFilter();
+        filter = new IntentFilter();
         filter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
         filter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
         filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
@@ -224,6 +224,17 @@ public class FlowerAddEquipment extends ZlzRootActivity implements View.OnClickL
         super.unregisterReceiver(networkConnectChangedReceiver);
         super.onStop();
 
+    }
+
+    @Override
+    protected void onResume() {
+//        IntentFilter filter = new IntentFilter();
+        filter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
+        filter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
+        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+//        networkConnectChangedReceiver = new NetworkConnectChangedReceiver();
+        registerReceiver(networkConnectChangedReceiver, filter);
+        super.onResume();
     }
 }
 

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backcolor"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <EditText
+            android:maxLines="1"
+            android:paddingLeft="10dp"
+            android:hint="你的联系方式(手机或QQ)"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/forget_etback"/>
+        <EditText
+            android:paddingTop="10dp"
+            android:gravity="top"
+            android:hint="感谢你的意见，我们会重视你的每一条建议"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/forget_etback"/>
+        <TextView
+            android:text="发送"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/btnback"/>
+
+
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>

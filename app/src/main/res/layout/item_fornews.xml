@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    android:background="#ffffff"
+    android:orientation="horizontal">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+    <!--未读biaozhi-->
+    <LinearLayout
+        android:background="#ffffff"
+        android:id="@+id/inews_ll_red"
+        android:gravity="top|center"
+        android:layout_width="20dp"
+        android:layout_height="30dp">
+        <include
+            layout="@layout/flower_red"/>
+
+    </LinearLayout>
+
+    <!--消息内容-->
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/bottom_line"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!--消息标题 时间-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <!--标题-->
+            <TextView
+                android:text="20160711最新消息"
+                android:textSize="18dp"
+                android:gravity="center|left"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+            <!--时间-->
+            <TextView
+                android:text="19:06"
+                android:gravity="center|bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+        <!--内容-->
+        <TextView
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="是可敬控件罗技罗技立刻就开了家就离开就离开路口路口控件拉近了看"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/textView">
+
+        </TextView>
+
+    </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backcolor">
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@color/backcolor"
+        >
+        <ImageView
+            android:src="@drawable/loginlogo"
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="250dp">
+        <!--硬件设备版本-->
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bottom_line">
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@drawable/banben"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:text="硬件设备版本"
+                android:textSize="18dp"
+                android:gravity="center|left"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent" />
+
+
+        </LinearLayout>
+        <!--设备名称-->
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bottom_line">
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@drawable/name"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:text="设备名称"
+                android:textSize="18dp"
+                android:gravity="center|left"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent" />
+            <include
+                layout="@layout/flower_btn_go"/>
+
+
+        </LinearLayout>
+        <!--mac地址-->
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bottom_line">
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@drawable/mac"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:text="mac地址"
+                android:textSize="18dp"
+                android:gravity="center|left"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent" />
+
+
+
+        </LinearLayout>
+        <!--分组-->
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bottom_line">
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@drawable/groupp"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:text="分组"
+                android:textSize="18dp"
+                android:gravity="center|left"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent" />
+            <include
+                layout="@layout/flower_btn_go"/>
+
+
+        </LinearLayout>
+        <!--设备地址-->
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bottom_line">
+            <ImageView
+                android:layout_gravity="center"
+                android:src="@drawable/address"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:text="设备地址"
+                android:textSize="18dp"
+                android:gravity="center|left"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent" />
+            <include
+                layout="@layout/flower_btn_go"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

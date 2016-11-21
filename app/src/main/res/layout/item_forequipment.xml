@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!-- 左边 70 * 70   右边 向下排列 70 50 50-->
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:orientation="horizontal"
+        android:background="@color/etback"
+        >
+
+        <LinearLayout
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:gravity="center">
+            <!--150 129-->
+            <ImageView
+                android:id="@+id/equipment_list_img_logo"
+                 android:layout_margin="10dp"
+                android:scaleType="centerInside"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:src="@drawable/equipmenthotel"
+                />
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- 第一栏-->
+            <LinearLayout
+                android:background="@drawable/bottom_line"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/equipment_list_txt_name"
+                    android:paddingLeft="10dp"
+                    android:text="开元大酒店"
+                    android:gravity="bottom|left"
+                    android:textSize="12dp"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp" />
+                <!--restaurant-->
+                <LinearLayout
+
+                    android:gravity="top|left"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:id="@+id/equipment_list_img_state"
+                        android:src="@drawable/imgwifi"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:scaleType="fitCenter"/>
+                    <TextView
+                        android:id="@+id/equipment_list_txt_state"
+                        android:gravity="top"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/headcolor"
+                        android:text="在线"
+                        android:textSize="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        />
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <!-- 第一栏 -->
+
+            <!-- 第二栏-->
+            <LinearLayout
+                android:id="@+id/equipmentlist_ll_dating"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:background="@drawable/bottom_line">
+
+                 <ImageView
+                     android:id="@+id/equipment_list_img_hall"
+                     android:src="@drawable/equipmenthall"
+                     android:layout_width="10dp"
+                     android:layout_height="20dp"
+                     android:scaleType="fitCenter"
+                     />
+                <TextView
+                    android:padding="10dp"
+                    android:gravity="left|center"
+                    android:text="大厅"
+                    android:textSize="18dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+
+                </TextView>
+
+                <LinearLayout
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:paddingRight="20dp">
+
+                    <TextView
+                        android:id="@+id/equipment_list_hall_txt_stype"
+                        android:paddingRight="10dp"
+                        android:gravity="center|right"
+                        android:textSize="18dp"
+                        android:text="自运营"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/go"
+                        />
+
+                </LinearLayout>
+                
+            </LinearLayout>
+            <!-- 第二栏-->
+
+            <!-- 第三栏 -->
+            <LinearLayout
+                android:id="@+id/equipmentlist_ll_canting"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                >
+
+                <ImageView
+                    android:id="@+id/equipment_list_img_restaurant"
+                    android:src="@drawable/equipmenthall"
+                    android:layout_width="10dp"
+                    android:layout_height="20dp"
+                    android:scaleType="fitCenter"
+                    />
+                <TextView
+                    android:id="@+id/equipment_list_txt_restaurant"
+                    android:padding="10dp"
+                    android:gravity="left|center"
+                    android:text="餐厅"
+                    android:textSize="18dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+
+                </TextView>
+
+                <LinearLayout
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:paddingRight="20dp">
+
+                    <TextView
+                        android:id="@+id/equipment_list_restaurant_txt_stype"
+                        android:paddingRight="10dp"
+                        android:gravity="center|right"
+                        android:textSize="18dp"
+                        android:text="租用"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/go"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <!-- 第三栏 -->
+
+        </LinearLayout>
+
+    </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#F0F0F0"
+            />
+</LinearLayout>
+</LinearLayout>
+
+
+
+
+

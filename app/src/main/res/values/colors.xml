@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="backcolor">#F0F0F0</color>
+    <color name="etback">#ffffff</color>
+    <color name="strokecolor">#c4c4c4</color>
+    <color name="headcolor">#008979</color>
+    <color name="textcolor">#666666</color>
+    <color name="strolecolortwo">#B2B2B2</color>
+    <color name="SwitchColor">#ffc852</color>
+</resources>

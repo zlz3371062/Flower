@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    android:background="@color/backcolor"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--开始布局-->
+            <!--第一行-->
+            <LinearLayout
+                android:id="@+id/mine_ll_img"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/bottom_line"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/mine_txt_img"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="left|center"
+                    android:text="头像"
+                    android:textSize="18dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+                <com.nbhero.DIYview.CircleImageView
+                    android:id="@+id/mine_img_img"
+                    android:src="@drawable/loginuser"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="center|right"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    >
+                </com.nbhero.DIYview.CircleImageView>
+                <include
+                    layout="@layout/flower_btn_go"
+                    />
+
+            </LinearLayout>
+
+            <!--第二行-->
+            <LinearLayout
+                android:id="@+id/mine_ll_name"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bottom_line">
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:gravity="left|center"
+                    android:text="昵称"
+                    android:textSize="18dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:id="@+id/mine_txt_name"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:text="阿萨德"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+                <include
+                    layout="@layout/flower_btn_go"
+                    />
+
+            </LinearLayout>
+            <!--第三行-->
+            <LinearLayout
+                android:id="@+id/mine_ll_sex"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bottom_line">
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:gravity="left|center"
+                    android:text="性别"
+                    android:textSize="18dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/mine_txt_sex"
+                    android:textSize="18dp"
+                    android:gravity="center"
+                    android:text="男"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="42dp"/>
+
+            </LinearLayout>
+            <!--第四行-->
+            <LinearLayout
+                android:id="@+id/mine_ll_birthday"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bottom_line">
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:gravity="left|center"
+                    android:text="生日"
+                    android:textSize="18dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:id="@+id/mine_txt_birthday"
+                    android:layout_marginRight="42dp"
+                    android:text="1995-05-05"
+                    android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="right|center"/>
+
+            </LinearLayout>
+            <!--确定按钮-->
+            <!--<LinearLayout-->
+                <!--android:id="@+id/mine_ll_sure"-->
+                <!--android:layout_marginTop="70dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
+                <!--<TextView-->
+                    <!--android:id="@+id/mine_txt_sure"-->
+                    <!--android:layout_marginRight="20dp"-->
+                    <!--android:layout_marginLeft="20dp"-->
+                    <!--android:text="确定"-->
+                    <!--android:gravity="center"-->
+                    <!--android:textSize="18dp"-->
+                    <!--android:textColor="#ffffff"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:background="@drawable/btnback">-->
+
+                <!--</TextView>-->
+            <!--</LinearLayout>-->
+            <!--结束布局-->
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>

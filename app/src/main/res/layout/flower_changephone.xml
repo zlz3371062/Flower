@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backcolor"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        >
+
+        <include
+            layout="@layout/home_head"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        >
+        <LinearLayout
+            android:padding="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/forget_etback"
+            android:orientation="horizontal"
+            >
+
+            <EditText
+                android:id="@+id/forgetpassword_et_phonenum"
+                android:layout_weight="3"
+                android:hint="  请输入手机号码"
+                android:layout_width="0dp"
+                android:background="#ffffff"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/forgetpassword_btn_getcode"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="获取验证码"
+                android:textColor="#ffffff"
+                android:background="@drawable/forget_btnforgetcode"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:padding="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/forget_etback"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/forgetpassword_et_code"
+                android:hint="  请输入验证码"
+                android:background="#ffffff"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/forgetpassword_btn_sure"
+        android:text="确定"
+        android:textSize="18dp"
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/btnback"/>
+
+
+
+
+
+
+</LinearLayout>

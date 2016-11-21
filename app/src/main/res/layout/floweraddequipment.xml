@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <include
+            layout="@layout/home_head"
+            />
+
+
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="#ffffff">
+
+            <TextView
+                android:id="@+id/addrquipment_txt_tip"
+                android:textSize="12dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="0dp" />
+
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:gravity="center|right"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    >
+                    <ImageView
+                        android:layout_margin="5dp"
+                        android:src="@drawable/imgwifi"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp" />
+                    <TextView
+                        android:textSize="14dp"
+                        android:gravity="center|right"
+                        android:text="你当前的网络："
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        />
+
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:text="无网路"
+                    android:gravity="center|left"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/addrquipment_txt_wifinow"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/et_wifi"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:padding="2dp"
+                android:gravity="center">
+
+
+                <ImageView
+                    android:scaleType="centerInside"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/key"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" />
+
+                <EditText
+                    android:inputType="textPassword"
+                    android:id="@+id/addequipment_et_wifipassword"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:hint="请输入WIFI密码"
+                    android:background="#ffffff"/>
+
+                <ImageView
+                    android:scaleType="centerInside"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/eye"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/addequipment_img_see" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:background="#ffffff">
+
+        <TextView
+            android:layout_marginLeft="30dp"
+            android:text="连接的WLAN:"
+            android:gravity="center|left"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            />
+
+        <ListView
+            android:id="@+id/addequipment_list"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:dividerHeight="0px"
+            android:divider="@color/strolecolortwo"
+            >
+
+        </ListView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#ffffff"
+        android:gravity="center">
+
+
+        <TextView
+            android:id="@+id/addequipment_txt_next"
+            android:background="@drawable/next"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:textColor="#9a722b"
+            android:text="下一步"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

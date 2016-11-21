@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/backcolor"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+        <include
+            layout="@layout/home_head"
+            ></include>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:background="@drawable/register_etback"
+        android:gravity="center|left"
+        android:paddingLeft="20dp"
+
+        >
+
+        <ImageView
+            android:src="@drawable/phone"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <EditText
+            android:layout_margin="5dp"
+            android:id="@+id/reginster_et_phonenumber"
+            android:background="@color/etback"
+            android:hint="请填写您的手机号码"
+            android:layout_marginLeft="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:background="@drawable/register_etback"
+        android:gravity="center|left"
+        android:paddingLeft="20dp">
+
+        <ImageView
+            android:src="@drawable/loginpassword"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <EditText
+            android:layout_margin="5dp"
+            android:id="@+id/reginster_et_password"
+            android:background="@color/etback"
+            android:layout_marginLeft="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="请填写密码"
+            android:inputType="textPassword"
+            />
+    </LinearLayout>
+    <TextView
+        android:layout_marginTop="5dp"
+        android:id="@+id/register_txt_passwordtip"
+        android:background="@color/backcolor"
+        android:gravity="left"
+        android:textColor="@color/textcolor"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:maxLines="2"/>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:background="@drawable/register_etback"
+        android:gravity="center|left"
+        android:paddingLeft="20dp">
+
+        <ImageView
+            android:src="@drawable/code"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <EditText
+            android:layout_margin="5dp"
+            android:id="@+id/reginster_et_code"
+            android:background="@color/etback"
+            android:layout_marginLeft="8dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:hint="请填写您收到的验证码"
+            android:layout_weight="2"
+            android:inputType="numberSigned"/>
+        <TextView
+            android:id="@+id/reginster_btn_getcode"
+            android:text="获取验证码"
+            android:textColor="@color/etback"
+            android:textSize="14dp"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@drawable/btnback"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/reginster_btn_reginster"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="注册"
+        android:textColor="@color/etback"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/btnback"/>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:id="@+id/reginster_txt_tip"
+        android:gravity="center|top"
+        android:textSize="14dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        />
+
+
+</LinearLayout>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backcolor"
+    android:orientation="vertical">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.baidu.mapapi.map.TextureMapView
+            android:id="@+id/bmapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true" />
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:background="@drawable/forget_etback"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:padding="2dp">
+
+            <EditText
+                android:background="#ffffff"
+                android:layout_marginLeft="10dp"
+                android:hint="请输入..."
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent" />
+
+            <View
+                android:background="#cccccc"
+                android:layout_width="1dp"
+                android:layout_height="2dp"
+                android:layout_marginRight="10dp"/>
+            <ImageView
+                android:scaleType="centerInside"
+                android:src="@drawable/search"
+                android:layout_marginRight="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_alignBottom="@+id/bmapView"
+            android:layout_marginBottom="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#ffffff"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_margin="10dp"
+                android:src="@drawable/equipmenthome"
+                android:layout_width="60dp"
+                android:layout_height="match_parent" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" >
+                <TextView
+                    android:text="家"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp" />
+                <LinearLayout
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp" >
+                    <ImageView
+                        android:scaleType="centerInside"
+                        android:src="@drawable/imgwifi"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp" />
+
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/headcolor"
+                        android:text="在线"
+                        android:gravity="center|left"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <include
+                layout="@layout/flower_btn_go"/>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</LinearLayout>

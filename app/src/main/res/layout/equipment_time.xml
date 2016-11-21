@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backcolor">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            >
+
+            <!--开始布局-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:background="#ffffff"
+                >
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="18dp"
+                    android:gravity="center|left"
+                    android:text="时间设置"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:background="@drawable/bottom_line"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp">
+
+                        <TextView
+                            android:gravity="center"
+                            android:text="起始时间"
+                            android:textSize="14dp"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
+                        <TextView
+                            android:textSize="14dp"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:text="2016-08-01"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp">
+
+                        <TextView
+                            android:textSize="14dp"
+                            android:gravity="center"
+                            android:text="结束时间"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
+                        <TextView
+                            android:gravity="center"
+                            android:textSize="14dp"
+                            android:textStyle="bold"
+                            android:text="2016-08-01"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--头部结束？-->
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="310dp"
+                android:background="#ffffff"
+                >
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="18dp"
+                    android:gravity="center|left"
+                    android:text="工作日"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:background="@drawable/bottom_line"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="280dp">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp">
+
+                        <TextView
+                            android:gravity="center"
+                            android:text="周一"
+                            android:textSize="14dp"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
+                        <LinearLayout
+                            android:id="@+id/equipment_time_ll_monday"
+                            android:gravity="center|right"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" >
+                            <ImageView
+                                android:id="@+id/equipment_time_img_monday"
+                                android:layout_marginRight="20dp"
+                                android:src="@drawable/addno"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp">
+
+                        <TextView
+                            android:gravity="center"
+                            android:text="周二"
+                            android:textSize="14dp"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
+                        <LinearLayout
+                            android:id="@+id/equipment_time_ll_tuesday"
+                            android:gravity="center|right"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" >
+                            <ImageView
+                                android:id="@+id/equipment_time_img_tuesday"
+                                android:layout_marginRight="20dp"
+                                android:src="@drawable/addno"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <!--周三-->
+                    <LinearLayout
+
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp">
+
+                        <TextView
+                            android:gravity="center"
+                            android:text="周三"
+                            android:textSize="14dp"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
+                        <LinearLayout
+                            android:id="@+id/equipment_time_ll_wednesday"
+                            android:gravity="center|right"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" >
+                            <ImageView
+                                android:id="@+id/equipment_time_img_wednesday"
+                                android:layout_marginRight="20dp"
+                                android:src="@drawable/addno"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>t
+                    <!--周四-->
+                    <LinearLayout
+
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp">
+
+                        <TextView
+                            android:gravity="center"
+                            android:text="周四"
+                            android:textSize="14dp"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
+                        <LinearLayout
+                            android:id="@+id/equipment_time_ll_thursday"
+                            android:gravity="center|right"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" >
+                            <ImageView
+                                android:id="@+id/equipment_time_img_thursday"
+                                android:layout_marginRight="20dp"
+                                android:src="@drawable/addno"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>f
+                    <!--周五-->
+                    <LinearLayout
+
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp">
+
+                        <TextView
+                            android:gravity="center"
+                            android:text="周五"
+                            android:textSize="14dp"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
+                        <LinearLayout
+                            android:id="@+id/equipment_time_ll_friday"
+                            android:gravity="center|right"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" >
+                            <ImageView
+                                android:id="@+id/equipment_time_img_friday"
+                                android:layout_marginRight="20dp"
+                                android:src="@drawable/addno"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <!--周六-->
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp">
+
+                        <TextView
+                            android:gravity="center"
+                            android:text="周六"
+                            android:textSize="14dp"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
+                        <LinearLayout
+                            android:id="@+id/equipment_time_ll_saturday"
+                            android:gravity="center|right"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" >
+                            <ImageView
+                                android:id="@+id/equipment_time_img_saturday"
+                                android:layout_marginRight="20dp"
+                                android:src="@drawable/addno"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <!--周日-->
+                    <LinearLayout
+
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp">
+
+                        <TextView
+                            android:gravity="center"
+                            android:text="周日"
+                            android:textSize="14dp"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" />
+                        <LinearLayout
+                            android:id="@+id/equipment_time_ll_sunday"
+                            android:gravity="center|right"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent" >
+                            <ImageView
+                                android:id="@+id/equipment_time_img_sunday"
+                                android:layout_marginRight="20dp"
+                                android:src="@drawable/addno"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/equipment_time_ll_sure"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:text="确定"
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/forget_btnforgetcode"/>
+            </LinearLayout>
+
+            <!--布局结束 -->
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>

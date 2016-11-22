@@ -1,19 +1,10 @@
 package com.nbhero.presenter;
 
-import android.app.Activity;
-import android.icu.text.SimpleDateFormat;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 import com.nbhero.InterFace.IFlowerRegister;
-import com.nbhero.InterFace.IMainManger;
 import com.nbhero.model.MFlowerRegister;
 import com.nbhero.util.tool;
-
-import java.util.Date;
-
-import cn.bmob.newsmssdk.BmobSMS;
 
 /**
  * Created by zhenglingzhong on 2016/10/25.
@@ -34,7 +25,6 @@ public class PFlowerRegister extends PMainManger {
         this.iFlowerRegister  = (IFlowerRegister) listerner;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public   void  getCode(){
         init();
         String phone = mFlowerRegister.getPhoneNumber();

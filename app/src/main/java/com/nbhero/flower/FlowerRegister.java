@@ -84,21 +84,21 @@ public class FlowerRegister extends ZlzRootActivity implements IFlowerRegister, 
     private void getCode(){
 
         mFlowerRegister.setPhoneNumber(etphoneNum.getText().toString().trim());
-
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String sendTime = format.format(new Date());
-        BmobSMS.requestSMS(this, etphoneNum.getText().toString().trim(), "注册验证码",sendTime,new RequestSMSCodeListener() {
-
-            @Override
-            public void done(Integer smsId,BmobException ex) {
-                // TODO Auto-generated method stub
-                if(ex==null){//
-                    Log.i("bmob","短信发送成功，短信id："+smsId);//用于查询本次短信发送详情
-                }else{
-                    Log.i("bmob","errorCode = "+ex.getErrorCode()+",errorMsg = "+ex.getLocalizedMessage());
-                }
-            }
-        });
+        pFlowerRegister.getCode();
+//        SimpleDateF ormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        String sendTime = format.format(new Date());
+//        BmobSMS.requestSMS(this, etphoneNum.getText().toString().trim(), "注册验证码",sendTime,new RequestSMSCodeListener() {
+//
+//            @Override
+//            public void done(Integer smsId,BmobException ex) {
+//                // TODO Auto-generated method stub
+//                if(ex==null){//
+//                    Log.i("bmob","短信发送成功，短信id："+smsId);//用于查询本次短信发送详情
+//                }else{
+//                    Log.i("bmob","errorCode = "+ex.getErrorCode()+",errorMsg = "+ex.getLocalizedMessage());
+//                }
+//            }
+//        });
 
     }
     //注册

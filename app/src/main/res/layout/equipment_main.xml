@@ -22,11 +22,13 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:padding="2dp">
+
                 <com.nbhero.DIYview.AboutGas
-                    android:id="@+id/equipment_main_ll_pro"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
+                android:id="@+id/equipment_main_ll_pro"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
                 </com.nbhero.DIYview.AboutGas>
+
             </LinearLayout>
 
         </LinearLayout>

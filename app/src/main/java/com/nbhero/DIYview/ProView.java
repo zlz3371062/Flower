@@ -212,7 +212,6 @@ public class ProView extends View {
         }else if(stype == 1){
             //租用状态
 
-
             canvas.drawText(runtimeh+"h:"+runtimem+"m",startX ,endY - tool.dip2px(con,20),painttextTop);
 
             canvas.drawText("运行总时长",startX ,endY + tool.dip2px(con,30),painttextBottom);
@@ -231,9 +230,6 @@ public class ProView extends View {
         canvas.drawCircle(endX,endY,endWidth,paintEnd);
         paintLinePro.setXfermode(porterDuffXfermode);
         canvas.drawLine(lineProStartX,lineProStartY,move,lineBackEndY,paintLinePro);
-
-
-
 
         if(move + speed < lineProEndX ) {
 

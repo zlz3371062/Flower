@@ -53,7 +53,6 @@ public class PFlowerRegister extends PMainManger {
 
 
 
-
     }
 
     public  void reginster(){

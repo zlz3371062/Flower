@@ -25,7 +25,7 @@ import com.nbhero.util.tool;
 
 public class AboutGas extends View{
 
-
+    private  int   mCycleFactorW ;
     //view
     private  int viewheight;
     private  int viewwidth;
@@ -99,10 +99,7 @@ public class AboutGas extends View{
 
         bitWidth = mybit.getWidth();
         bitHeight = mybit.getHeight();
-        Log.e("zlz","width" + bitWidth);
-        Log.e("zlz","bitHeight" + bitHeight);
-        Log.e("zlz","viewidth" + viewwidth);
-        Log.e("zlz","viewheight" + viewheight);
+
         mSrcRect = new Rect(0,0,bitWidth,bitHeight);
 
         mDestRect = new Rect(bitHeight / 2 - bitWidth / 2,0,bitHeight / 2 - bitWidth / 2 + bitWidth,bitHeight);
@@ -135,7 +132,6 @@ public class AboutGas extends View{
     }
 
     private  Bitmap makeBit(){
-
 
         //得到图片原始的高宽
         int rawHeight = bitHeight;

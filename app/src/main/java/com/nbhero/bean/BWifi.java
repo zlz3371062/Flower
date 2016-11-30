@@ -11,6 +11,8 @@ public class BWifi {
 
     private  String SSID;
     private  String isConfig;
+    private  int networkId;
+
 
     public String getSSID() {
         return SSID;
@@ -26,5 +28,13 @@ public class BWifi {
 
     public void setIsConfig(String isConfig) {
         this.isConfig = isConfig;
+    }
+
+    public int getNetworkId() {
+        return networkId;
+    }
+
+    public void setNetworkId(int networkId) {
+        this.networkId = networkId;
     }
 }

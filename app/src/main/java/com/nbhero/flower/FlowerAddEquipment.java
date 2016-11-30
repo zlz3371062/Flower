@@ -18,18 +18,31 @@ import android.os.Bundle;
 import android.text.Html;
 import android.text.InputType;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nbhero.adapter.ForaddEquipment;
 import com.nbhero.bean.BWifi;
 import com.nbhero.bean.BWifiNow;
+import com.nbhero.connScoket.ConnetScoket;
 import com.nbhero.util.ZaboutWIFI;
 import com.nbhero.util.ZlzRootActivity;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.Writer;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +52,7 @@ import java.util.List;
  */
 
 
-public class FlowerAddEquipment extends ZlzRootActivity implements View.OnClickListener {
+public class FlowerAddEquipment extends ZlzRootActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     //wifi管理
     private WifiManager wifiManager;    //网络管理
@@ -59,6 +72,7 @@ public class FlowerAddEquipment extends ZlzRootActivity implements View.OnClickL
     private  int seestype = 0;
     private ImageView seeimg;
     private EditText wifipassword;
+    int  code = -1; //设置wifi结果
 
     private  int txtTipid = R.id.addrquipment_txt_tip;
 
@@ -94,6 +108,7 @@ public class FlowerAddEquipment extends ZlzRootActivity implements View.OnClickL
         networkConnectChangedReceiver = new NetworkConnectChangedReceiver();
         registerReceiver(networkConnectChangedReceiver, filter);
         ls = (ListView) findViewById(R.id.addequipment_list);
+        ls.setOnItemClickListener(this);
         ad = new ForaddEquipment(this, bWifis);
         seeimg= (ImageView) findViewById(R.id.addequipment_img_see);
         wifipassword = (EditText) findViewById(R.id.addequipment_et_wifipassword);
@@ -107,7 +122,6 @@ public class FlowerAddEquipment extends ZlzRootActivity implements View.OnClickL
     }
 
     private void aboutView() {
-
 
         txtTip.setText(Html.fromHtml("设备暂时无法使用5GWI-FI配置<br/>如果使用的是5G WLAN，请切换为他WLAN"));
         ls.setAdapter(ad);
@@ -131,6 +145,7 @@ public class FlowerAddEquipment extends ZlzRootActivity implements View.OnClickL
 
         }
         if(isWift){
+
             aboutWifi();
             txtwifiNow.setText(bWifiNow.getSSID());
             ls.setAdapter(ad);
@@ -148,24 +163,27 @@ public class FlowerAddEquipment extends ZlzRootActivity implements View.OnClickL
         bWifiNow = wi.wifiNow();
         wifiConfigList = wi.getConfiguration();
         List<BWifi> temp = wi.nearWifi();
+        Log.e("zlz",temp.size()+"tiao");
+        for ( int i = 0 ;i<temp.size();i++){
+            Log.e("zlz",temp.get(i).getSSID());
+        }
         bWifis.clear();
         for ( int i = 0 ;i<temp.size();i++){
 
             String ssid = temp.get(i).getSSID();
-            if(wi.IsConfiguration(wifiConfigList,ssid) == -1){
+            int code = wi.IsConfiguration(wifiConfigList,ssid);
+            if(code == -1){
                 temp.get(i).setIsConfig("未配置");
-
-            }else {
-
+                Log.e("zlz","运行次数1");
+            }else{
                 temp.get(i).setIsConfig("已保存");
+                temp.get(i).setNetworkId(code);
             }
 
             bWifis.add(temp.get(i));
         }
 
-       Log.e("zlz",temp.size()+"temp");
 
-        Log.e("zlz",bWifis.size()+"bWifis");
     }
 
     @Override
@@ -197,6 +215,39 @@ public class FlowerAddEquipment extends ZlzRootActivity implements View.OnClickL
     public void zlzG() {
     }
 
+
+    //点击
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+        final String ssid =  bWifis.get(i).getSSID();
+        String config = bWifis.get(i).getIsConfig();
+
+        if(config.equals("未配置")){
+
+            configWifi(ssid,i);
+
+
+
+            return;
+
+        }else {
+
+
+            Log.e("zlz",bWifis.get(i).getSSID());
+            Log.e("zlz",bWifis.get(i).getNetworkId()+"连接");
+            boolean issuccess = wi.ConnectWifi(bWifis.get(i).getNetworkId());
+            if(issuccess){
+                Toast.makeText(this,"连接wifi成功",Toast.LENGTH_SHORT).show();
+                Intent go = new Intent(this, ConnetScoket.class);
+                startActivity(go);
+
+            }
+
+
+        }
+    }
+
     public class NetworkConnectChangedReceiver extends BroadcastReceiver {
         public void onReceive(Context context, Intent intent) {
 
@@ -206,7 +257,6 @@ public class FlowerAddEquipment extends ZlzRootActivity implements View.OnClickL
                 NetworkInfo ni = intent.getParcelableExtra(ConnectivityManager.EXTRA_NETWORK_INFO);
                 if (ni.getState() == NetworkInfo.State.CONNECTED && ni.getType() == ConnectivityManager.TYPE_WIFI) {
                     //wifi打开
-                    Log.e("zlz","开");
                     isWift = true;
                     aboutView();
                 } else if(ni.getState() == NetworkInfo.State.DISCONNECTED && ni.getType() == ConnectivityManager.TYPE_WIFI){
@@ -218,7 +268,56 @@ public class FlowerAddEquipment extends ZlzRootActivity implements View.OnClickL
         }
     }
 
+    //配制wifi
+    private  void configWifi(final String pssid,final int pi){
 
+
+        code = -1 ;
+
+        View v  =   LayoutInflater.from(this).inflate(R.layout.configwifi,null);
+        final Dialog dialog = new AlertDialog.Builder(this).setView(v).create();
+        dialog.show();
+
+        final EditText et = (EditText) v.findViewById(R.id.wifipassword);
+
+        dialog.show();
+        v.findViewById(R.id.sure).setOnClickListener(new View.OnClickListener(
+
+        ) {
+            @Override
+            public void onClick(View view) {
+
+                ArrayList<ScanResult>  list = (ArrayList<ScanResult>) wifiManager.getScanResults();
+                String  password = et.getText().toString().trim();
+
+                code = wi.AddWifiConfig(list,pssid,password);
+
+                if(code == -1){
+
+                    Toast.makeText(FlowerAddEquipment.this,"配制wifi失败",Toast.LENGTH_SHORT).show();
+                }else {
+
+                    bWifis.get(pi).setIsConfig("已保存");
+                    bWifis.get(pi).setSSID(pssid);
+                    bWifis.get(pi).setNetworkId(code);
+                    ad.notifyDataSetChanged();
+                    Toast.makeText(FlowerAddEquipment.this,"配制wifi成功",Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        });
+
+        v.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                dialog.dismiss();
+
+            }
+        });
+
+    }
     @Override
     protected void onStop() {
         super.unregisterReceiver(networkConnectChangedReceiver);

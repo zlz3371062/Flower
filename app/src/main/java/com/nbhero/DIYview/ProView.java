@@ -177,16 +177,13 @@ public class ProView extends View {
         painttextTop.setTextSize(tool.dip2px(con,16));
         painttextTop.setTextAlign(Paint.Align.CENTER);
         painttextTop.setColor(getResources().getColor(R.color.headcolor));
-//文字下
+       //文字下
         painttextBottom = new Paint();
 //        painttextBottom.setStrokeWidth(tool.dip2px(con,16));
         painttextBottom.setTextSize(tool.dip2px(con,12));
         painttextBottom.setTextAlign(Paint.Align.CENTER);
         painttextBottom.setColor(getResources().getColor(R.color.headcolor));
-        Log.e("zlz",lineProStartX+"lineProStartX");
-        Log.e("zlz",lineBackWidth+"lineBackWidth");
-        Log.e("zlz",lineBackEndX+"lineBackEndX");
-        Log.e("zlz",lineProEndX+"lineProEndX");
+
 
     }
 

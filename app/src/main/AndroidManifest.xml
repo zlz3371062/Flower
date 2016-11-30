@@ -60,6 +60,7 @@
         <activity android:name="com.nbhero.equipment.MainForEquipment"/>
         <activity android:name="com.nbhero.equipment.AboutEquipment"/>
         <activity android:name=".FlowerEquipmentSetting"/>
+        <activity android:name="com.nbhero.connScoket.ConnetScoket"/>
         <!--baidu-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"

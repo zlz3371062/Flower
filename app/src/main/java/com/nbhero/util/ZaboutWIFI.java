@@ -50,10 +50,10 @@ public class ZaboutWIFI {
     public  List<BWifi> nearWifi(){
         List<BWifi> bWifis = new ArrayList<BWifi>();
         list = (ArrayList<ScanResult>) wifiManager.getScanResults();
+
         for (int i =0 ; i<list.size();i++){
             BWifi bWifi = new BWifi();
             bWifi.setSSID(list.get(i).SSID);
-
             bWifis.add(bWifi);
         }
         return   bWifis;
@@ -99,8 +99,6 @@ public class ZaboutWIFI {
     //判定指定WIFI是否已经配置好,依据WIFI的地址BSSID,返回NetId
     public int IsConfiguration(List<WifiConfiguration> list,String SSID){
 
-        Log.e("zlz",list.get(5).SSID);
-        Log.e("zlz",SSID);
         for(int i = 0; i < list.size(); i++){
             String name = list.get(i).SSID;
             name = name.substring(1, name.length() - 1);
@@ -113,11 +111,11 @@ public class ZaboutWIFI {
 
     //添加指定WIFI的配置信息,原列表不存在此SSID
     public int AddWifiConfig(List<ScanResult> wifiList,String ssid,String pwd){
+
         int wifiId = -1;
         for(int i = 0;i < wifiList.size(); i++){
             ScanResult wifi = wifiList.get(i);
             if(wifi.SSID.equals(ssid)){
-                Log.i("AddWifiConfig","equals");
                 WifiConfiguration wifiCong = new WifiConfiguration();
                 wifiCong.SSID = "\""+wifi.SSID+"\"";//\"转义字符，代表"
                 wifiCong.preSharedKey = "\""+pwd+"\"";//WPA-PSK密码
@@ -125,10 +123,12 @@ public class ZaboutWIFI {
                 wifiCong.status = WifiConfiguration.Status.ENABLED;
                 wifiId = wifiManager.addNetwork(wifiCong);//将配置好的特定WIFI密码信息添加,添加完成后默认是不激活状态，成功返回ID，否则为-1
                 if(wifiId != -1){
+
                     return wifiId;
                 }
             }
         }
+
         return wifiId;
 
     }
@@ -138,10 +138,12 @@ public class ZaboutWIFI {
         for(int i = 0; i < wifiConfigList.size(); i++){
             WifiConfiguration wifi = wifiConfigList.get(i);
             if(wifi.networkId == wifiId){
+
                 while(!(wifiManager.enableNetwork(wifiId, true))){//激活该Id，建立连接
                     //status:0--已经连接，1--不可连接，2--可以连接
                     Log.i("ConnectWifi",String.valueOf(wifiConfigList.get(wifiId).status));
                 }
+
                 return true;
             }
         }

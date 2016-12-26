@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent">
+    <include
+        layout="@layout/home_head"
+        />
+
+
+    <LinearLayout
+        android:padding="2dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+
+        <TextView
+            android:gravity="center|left"
+            android:text="设备id："
+            android:textSize="12dp"
+            android:layout_weight="2"
+            android:layout_marginLeft="10dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:textSize="12dp"
+            android:id="@+id/txt_ip"
+            android:layout_weight="3"
+            android:layout_marginLeft="10dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="2dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+
+        <TextView
+            android:textSize="12dp"
+            android:gravity="center|left"
+            android:text="设备名称："
+            android:layout_weight="2"
+            android:layout_marginLeft="10dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:textSize="12dp"
+            android:id="@+id/txt_id"
+            android:layout_weight="3"
+            android:layout_marginLeft="10dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:padding="2dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:maxLines="1"
+            android:gravity="center|left"
+            android:textSize="12dp"
+            android:text="选择服务器所在的网络:"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <Spinner
+            android:layout_marginLeft="10dp"
+            android:layout_weight="3"
+            android:id="@+id/spinner"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:maxLines="1"
+            android:gravity="center"
+            android:textSize="12dp"
+            android:text="刷新"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/txt_refersh" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:padding="2dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:gravity="center|left"
+            android:text="请输入服务器ip"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <EditText
+            android:id="@+id/et_ip"
+            android:hint="地址"
+            android:maxLines="1"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:padding="2dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:gravity="center|left"
+            android:text="请输入服务器端口"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <EditText
+            android:id="@+id/et_sort"
+            android:hint="端口"
+            android:maxLines="1"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/txt_set"
+        android:layout_margin="25dp"
+        android:background="@drawable/btnback"
+        android:gravity="center"
+        android:text="一键配置"
+        android:textColor="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+
+
+</LinearLayout>

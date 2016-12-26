@@ -59,7 +59,7 @@ public class MainForEquipment extends ZlzRootActivity implements View.OnClickLis
         switchstate = (TextView) findViewById(R.id.equipment_txt_state);
         aboutGas = (AboutGas) findViewById(R.id.equipment_main_ll_pro);
         switchstate = (TextView) findViewById(txtswitchstateid);
-        aboutGas.setGas(0.4f);
+//        aboutGas.setGas(0.4f);
         proView= (ProView) findViewById(R.id.zlz);
         proView.set(150);
         proView.setSpeed(2);

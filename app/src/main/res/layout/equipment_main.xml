@@ -108,7 +108,7 @@
             <com.nbhero.DIYview.SwitchOpen
                 android:id="@+id/switchzlz"
                 android:layout_width="90dp"
-                android:layout_height="40dp" />
+                android:layout_height="35dp" />
 
         </LinearLayout>
         <LinearLayout

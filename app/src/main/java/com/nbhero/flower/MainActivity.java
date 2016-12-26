@@ -131,8 +131,12 @@ public class MainActivity extends ZlzRootActivity  implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-        Intent go = new Intent(this, FlowerAddEquipment.class);
+
+        Intent go = new Intent(this, FlowerAddEquipmentNew.class);
         startActivity(go);
+
+
+
     }
 
 

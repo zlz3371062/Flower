@@ -2,13 +2,50 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#ffffff"
     >
 
-    <EditText
-        android:background="#ffffff"
-        android:id="@+id/wifipassword"
+    <LinearLayout
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/et_wifi"
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="40dp"
+        android:padding="2dp"
+        android:gravity="center">
+
+
+        <ImageView
+            android:scaleType="centerInside"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/key"
+            android:layout_width="25dp"
+            android:layout_height="25dp" />
+
+        <EditText
+            android:inputType="textPassword"
+            android:id="@+id/wifipassword"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:gravity="center|left"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:hint="请输入WIFI密码"
+            android:background="#ffffff"/>
+
+        <ImageView
+            android:scaleType="centerInside"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/eye"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/addequipment_img_see" />
+
+
+    </LinearLayout>
     <LinearLayout
         android:background="#ffffff"
         android:orientation="horizontal"

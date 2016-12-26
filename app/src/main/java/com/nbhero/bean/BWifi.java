@@ -12,7 +12,7 @@ public class BWifi {
     private  String SSID;
     private  String isConfig;
     private  int networkId;
-
+    private String  Bssid;
 
     public String getSSID() {
         return SSID;
@@ -36,5 +36,13 @@ public class BWifi {
 
     public void setNetworkId(int networkId) {
         this.networkId = networkId;
+    }
+
+    public String getBssid() {
+        return Bssid;
+    }
+
+    public void setBssid(String bssid) {
+        Bssid = bssid;
     }
 }

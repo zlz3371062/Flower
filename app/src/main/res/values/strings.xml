@@ -1,3 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="hello">Hello World, MainActivity!</string>
+    <string name="about">About</string>
     <string name="app_name">Flower</string>
+    <string name="back">Back</string>
+    <string name="battery_level_low" formatted="false">Sorry, the battery level is %s, it\'s too low to send file!</string>
+    <string name="clear">Clear Text</string>
+    <string name="cancel">Cancel</string>
+    <string name="cmd_prefix">AT+</string>
+    <string name="cmd_mode_enter">M-Command</string>
+    <string name="cmd_mode_exit">T-Transmission</string>
+    <string name="default_udp_port">48899</string>
+    <string name="device_list">Device List</string>
+    <string name="device_not_found">No device found!</string>
+    <string name="device_found" formatted="false">%s device%s found!</string>
+    <string name="device_rebooting">Please wait while device is rebooting&#8230;</string>
+    <string name="refresh">Refresh</string>
+    <string name="ip">IP</string>
+    <string name="input">Input:</string>
+    <string name="mode_cmd">Command Mode</string>
+    <string name="mode_tts">Transparent Transmission Mode</string>
+    <string name="output">Output:</string>
+    <string name="ok">Ok</string>
+    <string name="sdcard_not_mount">SD card is not mounted!</string>
+    <string name="sdcard_unmount">SD card is unmounted!</string>
+    <string name="sdcard_mount">SD card is mounted!</string>
+    <string name="settings">Settings</string>
+    <string name="set_sd">Setting SD Card</string>
+    <string name="send">Send</string>
+    <string name="send_file">Send File</string>
+    <string name="send_file_success">Send file success!</string>
+    <string name="send_file_failure">Send file failure!</string>
+    <string name="reload">Reload</string>
+    <string name="reload_success">Reload the device success, Please wait while rebooting</string>
+    <string name="reload_wait">Please wait while reloading&#8230;</string>
+    <string name="reload_failure">Reload the device failure!</string>
+    <string name="reset">Reset</string>
+    <string name="reset_success">Reset the device success!</string>
+    <string name="reset_failure">Sorry, reset the device fail, please try again!</string>
+    <string name="reset_wait">Please wait while reseting&#8230;</string>
+    <string name="broadcast_content">Devices Searching</string>
+    <string name="cmd_list">Command List:</string>
+    <string name="cmd_list_items">
+        E ENTM NETP UART UARTF UARTFT UARTFL TMODE WMODE WSKEY WSSSID WSLK
+        WSLQ WEBU WAP WAKEY MSLP WSCAN TCPLK TCPDIS WANN LANN DHCPGW TCPTO
+        MAXSK TCPB TCPPTB TCPADDB TCPTOB TCPLKB EPHY
+    </string>
+    <string name="cmd_scan_modules">HF-A11ASSISTHREAD</string>
+    <string name="content">Searching Code</string>
+    <string name="comfirm_modify_scan_cmd">Are you sure to modify the searching code?</string>
+    <string name="comfirm_reload">Are you sure to reload the device to apply default setting and reboot?</string>
+    <string name="comfirm_reset">Are you sure to reset the device? If yes, it will restart.</string>
+    <string name="comfirm_send_file">Are you sure to send this file to the device to upgrade?
+        And it cann\'t be power off in the sending period!</string>
+    <string name="null_">Null</string>
+    <string name="no">No</string>
+    <string name="unknown">Unknown</string>
+    <string name="tcp_udp_settings">TCP/UDP Settings</string>
+    <string name="version">Version: </string>
+    <string name="yes">Yes</string>
+    <string name="warning">Warning</string>
+    <string name="wifi">WiFi</string>
+    <string name="wifi_disconnected">WiFi Disconnected</string>
+    <string name="wifi_connectivity" formatted="false">WiFi is %s at %s.</string>
+    <string name="wifi_mudole_params">WiFi Module Parameters</string>
+    <string name="wifi_sigal_level_low" formatted="false">Sorry, the WiFi signal level is %s, it\'s too low to send file.</string>
+    <string name="wifi_ip_settings_titlebar">Android WiFi Settings</string>
+    <string name="wifi_use_static_ip">Use static IP</string>
+    <string name="wifi_ip_address">IP address</string>
+    <string name="wifi_netmask">Netmask</string>
+    <string name="wifi_dns1">DNS 1</string>
+    <string name="wifi_dns2">DNS 2</string>
+    <string name="wifi_gateway">Gateway</string>
+    <string name="wifi_ip_settings_invalid_ip">Please type a valid IP address.</string>
+    <string name="wifi_default_ip_address">10.10.100.123</string>
+    <string name="wifi_default_netmask">255.255.255.0</string>
+    <string name="wifi_default_gateway">10.10.100.254</string>
 </resources>

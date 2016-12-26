@@ -54,6 +54,8 @@ public class EquipmentList extends Fragment implements View.OnClickListener ,Swi
         Intent go = new Intent(getActivity(), FlowerAddEquipment.class);
         getActivity().startActivity(go);
 
+
+
     }
 
     @Override

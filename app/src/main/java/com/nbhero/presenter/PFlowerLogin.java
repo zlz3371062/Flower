@@ -2,6 +2,7 @@ package com.nbhero.presenter;
 
 import android.util.Log;
 
+import com.nbhero.DIYview.FlowerLoading;
 import com.nbhero.InterFace.IFlowerLogin;
 import com.nbhero.model.MFlowerLogin;
 
@@ -41,6 +42,10 @@ public class PFlowerLogin  extends PMainManger {
         }
 
         iFlowerLogin.loginSuccess();
+
+
+
+
 
     }
 

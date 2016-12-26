@@ -272,7 +272,12 @@ public class Mine_mine extends Fragment implements View.OnClickListener{
         }else  if(requestCode == 1){
             if(data != null) {
                 String uri = data.getDataString();
-                uri = uri.substring(7);
+                Log.e("zlz",uri);
+
+                uri = uri.substring(7);//有bug 可能是uri 类型 有file 和content类型引起;
+                //华为：content
+                //小米：file
+
                 Bitmap bitmap = BitmapFactory.decodeFile(uri);
 
                 String dir = getActivity().getExternalCacheDir().toString() + "/head/temp.jpg";
@@ -284,7 +289,7 @@ public class Mine_mine extends Fragment implements View.OnClickListener{
                     try {
 
                         FileOutputStream out = new FileOutputStream(file);
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);// 有爆空指针
                         out.flush();
                         out.close();
                         FileOutputStream outmin = new FileOutputStream(filemin);

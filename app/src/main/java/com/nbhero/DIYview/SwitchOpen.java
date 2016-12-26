@@ -67,6 +67,7 @@ public class SwitchOpen  extends View{
 
         layerWidth = viewWidth - 100;
         layerHeight = viewWidth / 3;
+        Log.e("zlz",layerWidth + "layerWidth" + layerHeight);
         //bug : 必须设置 的宽 / 3 小于 设的 高   viewwidth / 3 < viewHeight
 
         setMeasuredDimension(viewWidth,viewHeight);

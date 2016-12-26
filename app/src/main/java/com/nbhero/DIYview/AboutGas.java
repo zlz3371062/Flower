@@ -10,14 +10,10 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import com.nbhero.flower.R;
-import com.nbhero.util.tool;
 
 /**
  * Created by zhenglingzhong on 2016/11/8.
@@ -37,7 +33,7 @@ public class AboutGas extends View{
     private Rect mSrcRect, mDestRect,mDynamicRect;
     private  Paint mBitPaint;
 
-    private  float move = 0.5f;
+    private  float move = -1f;
 
 
     public AboutGas(Context context) {
@@ -81,8 +77,6 @@ public class AboutGas extends View{
                 .getBitmap();
         bitWidth = mybit.getWidth();
         bitHeight = mybit.getHeight();
-        Log.e("zlz","width" + bitWidth);
-        Log.e("zlz","bitHeight" + bitHeight);
         int rawHeight = bitHeight;
         int rawWidth = bitWidth;
         // 设定图片新的高宽
@@ -118,11 +112,26 @@ public class AboutGas extends View{
         // 绘制源图形
 
         canvas.drawRect(mDynamicRect, mBitPaint);
-        if(mDynamicRect.top >= (int)((1-move) * (float) bitHeight)){
-            Log.e("zlz","mDynamicRect.top " + mDynamicRect.top );
-            mDynamicRect.top -= 1;
-            postInvalidate();
+        if(move == -1f){
+
+                mDynamicRect.top -= 3;
+
+                if( mDynamicRect.top < 0){
+
+                    mDynamicRect.top = bitHeight;
+
+                }
+                postInvalidate();
+
+        }else {
+
+            if(mDynamicRect.top >= (int)((1-move) * (float) bitHeight)){
+                mDynamicRect.top -= 1;
+                postInvalidate();
+            }
+
         }
+
     }
 
     public  void setGas(float gas){

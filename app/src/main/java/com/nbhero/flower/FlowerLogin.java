@@ -3,6 +3,7 @@ package com.nbhero.flower;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nbhero.DIYview.FlowerLoading;
 import com.nbhero.InterFace.IFlowerLogin;
 import com.nbhero.model.MFlowerLogin;
 import com.nbhero.presenter.PFlowerLogin;
@@ -100,6 +102,8 @@ public class FlowerLogin extends ZlzRootActivity implements IFlowerLogin, View.O
         this.mFlowerLogin.setUserPassWord(etpassWord.getText().toString().trim());
         this.pFlowerLogin.login();
 
+
+
     }
 
 
@@ -114,6 +118,7 @@ public class FlowerLogin extends ZlzRootActivity implements IFlowerLogin, View.O
 
     @Override
     public void enterUserPwd() {
+
         mytoast = Toast.makeText(this,"请输入密码",Toast.LENGTH_SHORT);
         mytoast.show();
 
@@ -121,6 +126,7 @@ public class FlowerLogin extends ZlzRootActivity implements IFlowerLogin, View.O
 
     @Override
     public void loginSuccess() {
+
         save();
         go = new Intent(this,MainActivity.class);
         this.startActivity(go);

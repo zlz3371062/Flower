@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.DhcpInfo;
 import android.net.NetworkInfo;
+import android.net.wifi.ScanResult;
+import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -14,9 +16,13 @@ import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nbhero.DIYview.FlowerLoading;
 import com.nbhero.adapter.Forequ;
@@ -38,14 +44,14 @@ import java.util.List;
  * 客户端本身也加入了网络所以广播中 自己会接受到数据，但是无参的时候 自己没有加入到广播中去
  */
 
-public class FlowerAddEquipmentNew extends ZlzRootActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class FlowerAddEquipmentNew extends ZlzRootActivity implements View.OnClickListener, AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener {
 
     private WifiManager wifiManager;    //网络管理
     private ConnectivityManager connectManager; //管理网络连接
     private NetworkInfo netInfo;                 //网络连接
     private WifiInfo wifiInfo;                   //wifi
     private DhcpInfo dhcpInfo;                   //动态主机配置协议信息对象获取ip等网关信息
-
+    private List<WifiConfiguration> wifiConfigList;
     //数据摸
     BWifiNow WifiNow = new BWifiNow();
 
@@ -60,6 +66,16 @@ public class FlowerAddEquipmentNew extends ZlzRootActivity implements View.OnCli
     private ListView lv;
     FlowerLoading.Builder dialog;
     Dialog dialogtip;
+    //wifi测试部分
+    private TextView txt_wifistate,txt_test;
+    private Spinner wifi;
+    private EditText et_psw;
+    private ArrayAdapter<String> adapter;
+    private  List<String> wifilist = new ArrayList<String>();
+    private  ArrayList<ScanResult> nearwifi;
+    private  String SSID="";
+
+    private  String testPSW = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,19 +105,34 @@ public class FlowerAddEquipmentNew extends ZlzRootActivity implements View.OnCli
             }
         };
 
+
         stepView();
+
+
+
     }
 
     private void stepView() {
         settitle("添加设备");
         back();
         dialog = new FlowerLoading.Builder(this);
+        //测试部分
+        txt_wifistate = (TextView) findViewById(R.id.txt_wifistate);
+        txt_test = (TextView) findViewById(R.id.txt_test);
+        et_psw = (EditText) findViewById(R.id.et_psw);
+        wifi = (Spinner) findViewById(R.id.sp_wifi);
+        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,wifilist);
+        wifi.setAdapter(adapter);
+        wifi.setOnItemSelectedListener(this);
+        txt_test.setOnClickListener(this);
+
+
         btnhomeadd = (LinearLayout) findViewById(R.id.homeadd);
         btnhomeadd.setVisibility(View.VISIBLE);
         btnhomeadd.setOnClickListener(this);
         wifiName = (TextView) findViewById(R.id.addrquipment_txt_wifinow);
         txtTip = (TextView) findViewById(txtTipid);
-        txtTip.setText(Html.fromHtml("如果使用的是5G WLAN，请切换为他WLAN<br/>请点击右上角\"+\"切换网络"));
+        txtTip.setText(Html.fromHtml("<font color=red>请先测试希望设备连接的网络<br/>然后请点击右上角\"+\"切换为设备网络，进行配置"));
         lv = (ListView) findViewById(R.id.addequipment_list);
 //        addequipment_txt_next
         txtfind = (TextView) findViewById(R.id.addequipment_txt_next);
@@ -120,11 +151,29 @@ public class FlowerAddEquipmentNew extends ZlzRootActivity implements View.OnCli
             intent.setAction("android.net.wifi.PICK_WIFI_NETWORK");
             intent.putExtra("extra_prefs_show_button_bar", true);
             intent.putExtra("wifi_enable_next_on_connect", true);
+
             startActivity(intent);
 
         }else  if(view==txtfind){
 
             find();
+
+        }else  if(view == txt_test){
+
+            String psw = et_psw.getText().toString().trim();
+            if(psw.equals("")){
+
+                Toast.makeText(this,"请填写wifi密码",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            int code =  AddWifiConfig(nearwifi,SSID,psw);
+            if(code == -1){
+
+                txt_wifistate.setText("未通过");
+            }else {
+                testPSW = psw;
+                txt_wifistate.setText("通过");
+            }
 
         }
 
@@ -194,6 +243,33 @@ public class FlowerAddEquipmentNew extends ZlzRootActivity implements View.OnCli
         wifiInfo = wifiManager.getConnectionInfo();
         WifiNow =  wifiNow();
         wifiName.setText(wifiNow().getSSID());
+        nearwifi =  nearWifi();
+        wifilist.clear();
+        if(nearWifi().size()>0){
+
+            for (int i = 0;i< nearwifi.size();i++){
+
+                wifilist.add(nearwifi.get(i).SSID);
+            }
+
+        }
+        adapter.notifyDataSetChanged();
+
+
+//        ArrayList<ScanResult> nearlist = nearWifi();
+//       int returu = AddWifiConfig(nearlist,"nbheyi_704_pc","nbheyi0428");
+//
+//        Log.e("zlz","---------------------------------------" + returu);
+//        for (int i =0 ;i<wifiConfigList.size();i++) {
+//
+//            String ssid = wifiConfigList.get(i).SSID;
+//            int id = wifiConfigList.get(i).networkId;
+//            String key = wifiConfigList.get(i).preSharedKey;
+////            wifiConfigList.get(i).wepKeys
+//            Log.e("zlz", ssid + "------" + id + "-------" + key);
+//        }
+
+
     }
 
     private List<Module> decodePackets(List<DatagramPacket> packets) {
@@ -235,10 +311,60 @@ public class FlowerAddEquipmentNew extends ZlzRootActivity implements View.OnCli
         Intent intent = new Intent(this, CMDManage.class);
         intent.putExtra("IP",mModules.get(i).getIp());
         intent.putExtra("ModuleID",mModules.get(i).getModuleID());
+        intent.putExtra("wifipsw",testPSW);
         startActivity(intent);
 
 
     }
+    public  List<WifiConfiguration> getConfiguration(){
 
+        wifiConfigList = wifiManager.getConfiguredNetworks();//得到配置好的网络信息
 
+        return wifiConfigList;
+
+    }
+
+    public int AddWifiConfig(List<ScanResult> wifiList, String ssid, String pwd){
+
+        int wifiId = -1;
+        for(int i = 0;i < wifiList.size(); i++){
+            ScanResult wifi = wifiList.get(i);
+            if(wifi.SSID.equals(ssid)){
+                WifiConfiguration wifiCong = new WifiConfiguration();
+                wifiCong.SSID = "\""+wifi.SSID+"\"";//\"转义字符，代表"
+                wifiCong.preSharedKey = "\""+pwd+"\"";//WPA-PSK密码
+                wifiCong.hiddenSSID = false;
+                wifiCong.status = WifiConfiguration.Status.ENABLED;
+                wifiId = wifiManager.addNetwork(wifiCong);//将配置好的特定WIFI密码信息添加,添加完成后默认是不激活状态，成功返回ID，否则为-1
+                if(wifiId != -1){
+
+                    return wifiId;
+                }
+            }
+        }
+
+        return wifiId;
+
+    }
+    //附近的wifi
+    public  ArrayList<ScanResult> nearWifi(){
+
+        ArrayList<ScanResult>  bWifis = new ArrayList<ScanResult>();
+
+        bWifis = (ArrayList<ScanResult>) wifiManager.getScanResults();
+
+        return   bWifis;
+    }
+    //下拉选择
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+        SSID = wifilist.get(i);
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 }

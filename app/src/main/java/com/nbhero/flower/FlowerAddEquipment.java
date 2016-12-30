@@ -62,9 +62,6 @@ public class FlowerAddEquipment extends ZlzRootActivity implements View.OnClickL
     private EditText wifipassword;
     int  code = -1; //设置wifi结果
 
-    WifiReceiver wifiReceiver;
-    IntentFilter intentFilter;
-
     private  int txtTipid = R.id.addrquipment_txt_tip;
 
     private TextView txtwifiNow,txtTip,next;
@@ -84,12 +81,6 @@ public class FlowerAddEquipment extends ZlzRootActivity implements View.OnClickL
 
         settitle("添加设备");
         back();
-        intentFilter = new IntentFilter();
-        intentFilter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
-        intentFilter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
-        intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
-        wifiReceiver = new WifiReceiver();
-        registerReceiver(wifiReceiver, intentFilter);
         wifiManager = (WifiManager)getSystemService(Context.WIFI_SERVICE);
         connectManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
         netInfo = connectManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
@@ -107,38 +98,9 @@ public class FlowerAddEquipment extends ZlzRootActivity implements View.OnClickL
 
     private void aboutView() {
 
-        txtTip.setText(Html.fromHtml("设备暂时无法使用5GWI-FI配置<br/>如果使用的是5G WLAN，请切换为他WLAN"));
+        txtTip.setText(Html.fromHtml("请先测试希望设备连接的可用网络<br/>然后，点击右上角 + 选择设备网络进行查找设备。"));
         ls.setAdapter(ad);
         next.setOnClickListener(this);
-        if(!wifiManager.isWifiEnabled()){
-            isWift = false;
-            Dialog dialog = new AlertDialog.Builder(this).setTitle("提示").setMessage("需wifi支持需要打开wifi吗？").setPositiveButton("打开", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-
-                    wifiManager.setWifiEnabled(true);
-                }
-            }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-
-                }
-            }).create();
-
-            dialog.show();
-
-        }
-        if(isWift){
-
-            aboutWifi();
-            txtwifiNow.setText(bWifiNow.getSSID());
-            ls.setAdapter(ad);
-
-
-        }else {
-            txtwifiNow.setText("无网络");
-            ls.setAdapter(null);
-        }
 
     }
 
@@ -213,7 +175,7 @@ public class FlowerAddEquipment extends ZlzRootActivity implements View.OnClickL
 
         if(config.equals("未配置")){
 
-            configWifi(ssid,i);
+//            configWifi(ssid,i);
 
 
             return;
@@ -229,64 +191,8 @@ public class FlowerAddEquipment extends ZlzRootActivity implements View.OnClickL
 
             }
 
+        }
     }
-}
-
-
-
-
-    //配制wifi
-    private  void configWifi(final String pssid,final int pi){
-
-
-        code = -1 ;
-
-        View v  =   LayoutInflater.from(this).inflate(R.layout.configwifi,null);
-        final Dialog dialog = new AlertDialog.Builder(this).setView(v).create();
-        dialog.show();
-
-        final EditText et = (EditText) v.findViewById(R.id.wifipassword);
-        seeimg = (ImageView) v.findViewById(R.id.addequipment_img_see);
-        seeimg.setOnClickListener(this);
-        dialog.show();
-        v.findViewById(R.id.sure).setOnClickListener(new View.OnClickListener(
-
-        ) {
-            @Override
-            public void onClick(View view) {
-
-                ArrayList<ScanResult>  list = (ArrayList<ScanResult>) wifiManager.getScanResults();
-                String  password = et.getText().toString().trim();
-
-                code = AddWifiConfig(list,pssid,password);
-
-                if(code == -1){
-
-                    Toast.makeText(FlowerAddEquipment.this,"配制wifi失败",Toast.LENGTH_SHORT).show();
-                }else {
-
-                    bWifis.get(pi).setIsConfig("已保存");
-                    bWifis.get(pi).setSSID(pssid);
-                    bWifis.get(pi).setNetworkId(code);
-                    ad.notifyDataSetChanged();
-                    Toast.makeText(FlowerAddEquipment.this,"配制wifi成功",Toast.LENGTH_SHORT).show();
-                }
-
-
-            }
-        });
-
-        v.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                dialog.dismiss();
-
-            }
-        });
-
-    }
-
 
 
 
@@ -402,49 +308,6 @@ public class FlowerAddEquipment extends ZlzRootActivity implements View.OnClickL
         }
         return false;
     }
-
-
-
-    public class WifiReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-
-            if(intent.getAction().equals(WifiManager.RSSI_CHANGED_ACTION)){
-
-            }else if(intent.getAction().equals(
-                    WifiManager.NETWORK_STATE_CHANGED_ACTION)){
-                //wifi网络变化
-                NetworkInfo info =intent.
-                        getParcelableExtra(WifiManager.EXTRA_NETWORK_INFO);
-                if(info.getState().equals(NetworkInfo.State.DISCONNECTED)){
-                    Log.e("zlz","网络断开了");
-                    //网络断开了
-                }else if(info.getState().equals(NetworkInfo.State.CONNECTED)){
-                    //网络连接上了
-                    Log.e("zlz","网络连接上了");
-                    WifiManager wifiManager = (WifiManager)context.getSystemService(
-                            Context.WIFI_SERVICE);
-                    WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-                    Log.e("zlz","当前wifi名称");
-                    //获取当前wifi名称
-
-                }
-            }else if(intent.getAction().equals(
-                    WifiManager.WIFI_STATE_CHANGED_ACTION)){
-                //wifi打开与否
-                Log.e("zlz","wifi是否打开");
-                int wifistate = intent.getIntExtra(WifiManager.EXTRA_WIFI_STATE, 0);
-
-                if(wifistate == WifiManager.WIFI_STATE_DISABLED){
-                    Log.e("zlz","网络关闭");
-                }
-                else if(wifistate == WifiManager.WIFI_STATE_ENABLED){
-                    Log.e("zlz","网络打开");
-                }
-            }
-        }
-    }
-
 
 }
 

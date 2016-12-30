@@ -2,6 +2,7 @@ package com.nbhero.equimentSet;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nbhero.DIYview.FlowerLoading;
+import com.nbhero.flower.FlowerEquipmentSetting;
 import com.nbhero.flower.R;
 import com.nbhero.util.NetworkProtocol;
 import com.nbhero.util.Utils;
@@ -28,17 +30,30 @@ import java.util.List;
 public class CMDManage extends ZlzRootActivity implements ATCommandListener,TransparentTransmissionListener, View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     public String moudelID;
+    private  String wifipsw;
+    public String mIP;
     public TextView txtip,txtmodule,txtrefersh,txtSet;
-    private EditText et_ip,et_sort;
+    private EditText et_ip,et_sort,et_key;
+    private  TextView see;
+    Spinner spinnerap;
+    Spinner spinnerauth;
+    Spinner spinnerencry;
 
-    Spinner spinner;
 
     public FlowerLoading.Builder dialog;
 
-    public String mIP;
 
-    ArrayAdapter<String> adapter = null;
+
+
+
+    ArrayAdapter<String> adapterap = null;
     List<String> ap = new ArrayList<String>();
+
+    ArrayAdapter<String> adapterauth = null;
+    List<String> auth = new ArrayList<String>();
+
+    ArrayAdapter<String> adapterencry = null;
+    List<String> encry = new ArrayList<String>();
 
     public static final String sendForAp = "AT+WSCAN\r";
 
@@ -48,6 +63,9 @@ public class CMDManage extends ZlzRootActivity implements ATCommandListener,Tran
     private String strAP="";
     private  String strip ="";
     private  String strsort ="";
+    public String strAuth = "";
+    public String strEncry = "";
+    public String strKey = "";
 
     public UdpUnicast mUdpUnicast;
     public ATCommand mATCommand;
@@ -74,6 +92,7 @@ public class CMDManage extends ZlzRootActivity implements ATCommandListener,Tran
 
         mIP = getIntent().getStringExtra("IP");
         moudelID = getIntent().getStringExtra("ModuleID");
+        wifipsw = getIntent().getStringExtra("wifipsw");
 
         mUdpPort = Utils.getUdpPort(this);
 
@@ -83,6 +102,19 @@ public class CMDManage extends ZlzRootActivity implements ATCommandListener,Tran
         mATCommand.setListener(this);
         mTTransmission = new TransparentTransmission();
         mTTransmission.setListener(this);
+//        OPEN SHARED  WPAPSK  WPA2PSK
+        auth.add("WPA2PSK");
+        auth.add("OPEN");
+        auth.add("SHARED");
+        auth.add("WPAPSK");
+
+//        NONE WEP-H WEP-A TKIP AES
+        encry.add("AES");
+        encry.add("TKIP");
+        encry.add("WEP-A");
+        encry.add("WEP-H");
+        encry.add("NONE");
+
     }
 
     //设置布局
@@ -91,13 +123,25 @@ public class CMDManage extends ZlzRootActivity implements ATCommandListener,Tran
         back();
         dialog = new FlowerLoading.Builder(this);
         txtip = (TextView) findViewById(R.id.txt_ip);
-        spinner = (Spinner) findViewById(R.id.spinner);
-        spinner.setOnItemSelectedListener(this);
+        spinnerap = (Spinner) findViewById(R.id.spinner1);
+        spinnerencry = (Spinner) findViewById(R.id.spinner3);
+        spinnerauth = (Spinner) findViewById(R.id.spinner2);
+        adapterauth = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,auth);
+        spinnerauth.setAdapter(adapterauth);
+        spinnerap.setOnItemSelectedListener(this);
+        spinnerauth.setOnItemSelectedListener(this);
+        spinnerencry.setOnItemSelectedListener(this);
+        adapterencry = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,encry);
+        spinnerencry.setAdapter(adapterencry);
         txtmodule = (TextView) findViewById(R.id.txt_id);
         txtrefersh = (TextView) findViewById(R.id.txt_refersh);
         txtSet = (TextView) findViewById(R.id.txt_set);
         et_ip = (EditText) findViewById(R.id.et_ip);
         et_sort  = (EditText) findViewById(R.id.et_sort);
+        et_key = (EditText) findViewById(R.id.et_psw);
+        et_key.setText(wifipsw);
+        see = (TextView) findViewById(R.id.txt_see);
+        see.setOnClickListener(this);
         txtSet.setOnClickListener(this);
         txtrefersh.setOnClickListener(this);
         txtip.setText("I  P:     " + mIP);
@@ -287,51 +331,138 @@ public class CMDManage extends ZlzRootActivity implements ATCommandListener,Tran
     //重启结果
     @Override
     public void onReset(boolean success) {
-        if(success){
 
-            Log.e("zlz","重启成功");
-        }else {
-            Log.e("zlz","重启失败");
-        }
-
+        Intent i  = new Intent(this, FlowerEquipmentSetting.class);
+        startActivity(i);
 
     }
     //发送反回结果
     @Override
     public void onResponse(String response, String text) {
 
-
-
+        Log.e("zlz",response);
         if(text.equals("AT+WSCAN\r") && (!response.contains("SSID") && response.contains(","))){
-            Log.e("zlz","扫描结果");
             ap.add(getSSID(response));
-            adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,ap);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            this.spinner.setAdapter(adapter);
+            adapterap = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,ap);
+            adapterap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            this.spinnerap.setAdapter(adapterap);
         }else  if(text.equals("AT+WMODE=APSTA\r")){
-            Log.e("zlz","设置模式结果" + response);
-            if(response.equals("+ok\r\n\r\n")){
-                Log.e("zlz","设置模式结果成功");
-                APlink();
+            if(response.contains("ok")) {
 
+                seeMode();
+
+            }else {
+
+                finish();
+                Toast.makeText(this,"模块模式更改失败，请重新配置",Toast.LENGTH_SHORT).show();
             }
+
+        }else if(text.equals("AT+WMODE\r")){
+            if(response.contains("ok")){
+
+                if(response.contains("APSTA")){
+
+                    setKey();
+
+                }else  {
+                    finish();
+                    Toast.makeText(this,"模块模式更改失败，请重新配置",Toast.LENGTH_SHORT).show();
+                }
+            }else {
+
+                Toast.makeText(this,"查看模块模式更改失败"+response,Toast.LENGTH_SHORT).show();
+            }
+
+        }else  if(text.equals("AT+WSKEY="+strAuth+","+strEncry+","+strKey+"\r") ){
+
+            if(response.contains("ok")) {
+
+                seeKey();
+            }else {
+                finish();
+                Toast.makeText(this,"配置服务器网络参数错误",Toast.LENGTH_SHORT).show();
+            }
+        }else if(text.equals("AT+WSKEY\r")){
+
+            if(response.contains("ok")){
+                Log.e("zlz",strKey + "strKey");
+                if(response.contains(strKey)){
+                    Log.e("zlz","aplind");
+                    APlink();
+                }else {
+                    finish();
+                    Toast.makeText(this,"配置服务器网络参数错误",Toast.LENGTH_SHORT).show();
+                }
+            }else {
+
+                Toast.makeText(this,"查看配置服务器网络参数错误" +response,Toast.LENGTH_SHORT).show();
+            }
+
         }else  if(text.equals("AT+WSSSID=" + strAP +"\r")){
-            Log.e("zlz","设置网络结果" + response);
-            if(response.equals("+ok\r\n\r\n")){
-                Log.e("zlz","设置网络结果成功");
-                setServer();
+            if(response.contains("ok")){
 
+                seeAP();
+
+            }else {
+                finish();
+                Toast.makeText(this,"服务器网络配置失败",Toast.LENGTH_SHORT).show();
             }
+
+        }else if(text.equals("AT+WSSSID\r")){
+
+            if(response.contains("ok")){
+
+
+                if(response.contains(strAP)){
+
+                    setServer();
+
+                }else {
+
+                    finish();
+                    Toast.makeText(this,"关联ap失败" + response,Toast.LENGTH_SHORT).show();
+                }
+
+
+            }else {
+
+                Toast.makeText(this,"查看服务器ip命令失败" + response,Toast.LENGTH_SHORT).show();
+            }
+
 
         }else  if(text.equals("AT+NETP=TCP,CLIENT,"+strsort + "," + strip+"\r")){
-            Log.e("zlz","设置服务器结果" + response);
 
-            if(response.equals("+ok\r\n\r\n")){
-                reset();
+            if(response.contains("ok")){
+
+                seeClient();
+
+            }else {
+
+                finish();
+                Toast.makeText(this,"服务器参数配置失败",Toast.LENGTH_SHORT).show();
+            }
+        }else  if(text.equals("AT+NETP\r")){
+
+            if(response.contains("ok") ){
+
+                if(response.contains(strip)) {
+
+                    reset();
+                    Toast.makeText(this, "一键配置成功", Toast.LENGTH_SHORT).show();
+
+                }else {
+                    finish();
+                    Toast.makeText(this, "服务器参数配置失败", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }else {
+
+                Toast.makeText(this,"查看服务器参数命令失败" + response,Toast.LENGTH_SHORT).show();
 
             }
-        }
 
+        }
 
     }
 
@@ -340,7 +471,7 @@ public class CMDManage extends ZlzRootActivity implements ATCommandListener,Tran
 
     }
 
-
+    //点击事件监听
     @Override
     public void onClick(View view) {
 
@@ -351,14 +482,14 @@ public class CMDManage extends ZlzRootActivity implements ATCommandListener,Tran
                 Toast.makeText(this,"当前不是命令模式",Toast.LENGTH_SHORT).show();
 
             }else {
-
-
+                ap.clear();
                 getAP();
             }
 
         }else if(view == txtSet){
             strip = et_ip.getText().toString().trim();
             strsort = et_sort.getText().toString().trim();
+            strKey = et_key.getText().toString().trim();
             if(strAP.equals("")){
 
                 Toast.makeText(this,"请选择服务器所在网络",Toast.LENGTH_SHORT).show();
@@ -371,9 +502,17 @@ public class CMDManage extends ZlzRootActivity implements ATCommandListener,Tran
 
                 Toast.makeText(this,"请选择服务器端口",Toast.LENGTH_SHORT).show();
                 return;
+            } else if (strKey.equals("")) {
+                Toast.makeText(this,"请输入wifi密码",Toast.LENGTH_SHORT).show();
+                return;
             }
 
             setOne();
+
+
+        }else if(view == see){
+
+            reset();
         }
 
 
@@ -393,6 +532,32 @@ public class CMDManage extends ZlzRootActivity implements ATCommandListener,Tran
 
     }
 
+    private void setKey(){
+
+        new Thread(){
+            @Override
+            public void run() {
+
+                mATCommand.send("AT+WSKEY="+strAuth+","+strEncry+","+strKey+"\r");
+
+            }
+        }.start();
+
+
+    }
+
+    private  void seeKey(){
+        new Thread(){
+            @Override
+            public void run() {
+
+                mATCommand.send("AT+WSKEY\r");
+
+            }
+        }.start();
+
+
+    }
     private  void  APlink(){
 
         new Thread(){
@@ -404,6 +569,25 @@ public class CMDManage extends ZlzRootActivity implements ATCommandListener,Tran
             }
         }.start();
 
+    }
+    private  void  seeClient(){
+
+        new Thread(){
+            @Override
+            public void run() {
+                mATCommand.send("AT+NETP\r");
+            }
+        }.start();
+
+    }
+    private  void seeAP(){
+
+        new Thread(){
+            @Override
+            public void run() {
+                mATCommand.send("AT+WSSSID\r");
+            }
+        }.start();
     }
 
     private  void setServer(){
@@ -420,6 +604,18 @@ public class CMDManage extends ZlzRootActivity implements ATCommandListener,Tran
 
     }
 
+    private void seeMode(){
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                mATCommand.send("AT+WMODE\r");
+
+            }
+        }).start();
+
+    }
     private  void getAP(){
 
         new Thread(new Runnable() {
@@ -431,6 +627,7 @@ public class CMDManage extends ZlzRootActivity implements ATCommandListener,Tran
             }
         }).start();
     }
+
     public   String getSSID(String str){
 
         String ssid = null;
@@ -444,8 +641,14 @@ public class CMDManage extends ZlzRootActivity implements ATCommandListener,Tran
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        strAP = ap.get(i);
-        Log.e("zlz","ap=" + strAP);
+
+        if(adapterView == spinnerap){
+            strAP = ap.get(i);
+        }else if(adapterView == spinnerauth){
+            strAuth = auth.get(i);
+        }else  if(adapterView == spinnerencry){
+            strEncry = encry.get(i);
+        }
     }
 
     @Override

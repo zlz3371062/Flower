@@ -78,12 +78,13 @@
         <Spinner
             android:layout_marginLeft="10dp"
             android:layout_weight="3"
-            android:id="@+id/spinner"
+            android:id="@+id/spinner1"
             android:layout_width="0dp"
             android:layout_height="match_parent" />
 
 
         <TextView
+            android:background="@drawable/btnback"
             android:layout_marginLeft="10dp"
             android:maxLines="1"
             android:gravity="center"
@@ -95,6 +96,86 @@
             android:id="@+id/txt_refersh" />
 
     </LinearLayout>
+    <LinearLayout
+        android:padding="2dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:maxLines="1"
+            android:gravity="center|left"
+            android:textSize="12dp"
+            android:text="认证模式:"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <Spinner
+            android:layout_marginLeft="10dp"
+            android:layout_weight="3"
+            android:id="@+id/spinner2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:padding="2dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:maxLines="1"
+            android:gravity="center|left"
+            android:textSize="12dp"
+            android:text="加密算法:"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <Spinner
+            android:layout_marginLeft="10dp"
+            android:layout_weight="3"
+            android:id="@+id/spinner3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:padding="2dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:maxLines="1"
+            android:gravity="center|left"
+            android:textSize="12dp"
+            android:text="wifi密码:"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <EditText
+            android:editable="false"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="3"
+            android:id="@+id/et_psw"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
     <LinearLayout
         android:padding="2dp"
         android:orientation="horizontal"
@@ -149,8 +230,17 @@
         android:text="一键配置"
         android:textColor="#fff"
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
-
+        android:layout_height="30dp" />
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/txt_see"
+        android:layout_margin="5dp"
+        android:background="@drawable/btnback"
+        android:gravity="center"
+        android:text="重启"
+        android:textColor="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
 
 
 </LinearLayout>

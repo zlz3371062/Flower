@@ -36,7 +36,7 @@
             <LinearLayout
                 android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="30dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -74,16 +74,65 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
+                android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="0dp"
                 android:padding="2dp"
                 android:gravity="center">
 
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+                    <Spinner
+                        android:id="@+id/sp_wifi"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent">
+
+                    </Spinner>
+
+                    <TextView
+                        android:id="@+id/txt_wifistate"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="12dp"
+                        android:text="通过/未通过"
+                        android:gravity="center"
+                        android:layout_width="70dp"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+
+                    <EditText
+                        android:id="@+id/et_psw"
+                        android:layout_weight="1"
+                        android:maxLines="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent" />
+                    <TextView
+                        android:id="@+id/txt_test"
+                        android:textColor="#fff"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/btnback"
+                        android:textSize="12dp"
+                        android:text="测试"
+                        android:gravity="center"
+                        android:layout_width="70dp"
+                        android:layout_height="match_parent" />
+
+
+
+
+                </LinearLayout>
 
 
             </LinearLayout>
